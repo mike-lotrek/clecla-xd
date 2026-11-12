@@ -31,7 +31,7 @@ Italiano, registro di un collega esperto. Frasi dirette, verbi concreti, niente 
 - Nei contenuti riportati in un mockup, mantieni sempre grassetti e link presenti nell'as-is.
 - Gli a capo manuali nei testi dei mockup sono voluti: mantienili.
 - Quando una proposta di interazione non è chiara a parole, duplica il mockup e mostra gli stati invece di descriverli.
-- Nomi fittizi: devono essere gli stessi in tutte le epiche (Pubblicazione, Trattativa, Finalizzazione). Esempio in uso: Marco Ferrero (venditore), Giulia Rossi (acquirente).
+- Nomi fittizi: devono essere gli stessi in tutte le epiche (Pubblicazione, Visite, Trattativa, Finalizzazione). Marco Ferrero (venditore, MF), Giulia Rossi (acquirente, GR), immobile «Trilocale in Via Roma 12, Cuneo», prezzo dell'annuncio € 285.000 (06/11/2026).
 
 ### Terminologia bloccata
 
@@ -55,6 +55,7 @@ Italiano, registro di un collega esperto. Frasi dirette, verbi concreti, niente 
 - Nel file «Cleclà | UI» gli sfondi di pagina e sezione sono scuri: titoli fuori dai frame e testi delle note (comprese le etichette che erano blu) vanno in bianco.
 - Il punto interrogativo di help è sempre il bottone indaco «Help icon (?)» che apre il popover, mai l'icona `question_mark` nuda (pagine e Alert).
 - Le illustrazioni dei blocchi della guida vengono dalla board «Branded-illustrative» del file «Cleclà Design System (Flowbite)», nodo 3153:56283. Non sono componenti.
+- Titoli sopra le pagine: etichetta Spline Sans Bold 108 («K3 · Venditore») e sottotitolo Light 54, in bianco.
 - Le note sotto i frame desktop mostrano punti aperti e varianti di stato.
 - Dove possibile, i campi select aperti con tutte le opzioni vanno sotto le pagine, disegnati come gli stati alternativi di Trattativa e Finalizzazione, per aiutare lo sviluppo.
 - I badge di stato delle pagine usano i colori di stato, non Brand white.
@@ -76,16 +77,22 @@ Fonte di verità: sezione «Architettura» della board FigJam «[EXT] Cleclà | 
 - Le foto dell'immobile le scatta Cleclà (fotografi professionisti forse in un'evoluzione successiva).
 - I campi della scheda tecnica con il lucchetto li compila il backoffice, non il venditore; usano lo stile bloccato di Categoria catastale (stessi colori, icona lucchetto).
 - Modifica di tutto da parte del venditore dopo il completamento: da valutare con i dev (i cambi catastali sono un problema).
-- Il caricamento documenti resta in Pubblicazione ed è sempre possibile dall'Archivio.
+- Il caricamento documenti sta nell'Archivio: «Carica i documenti» è stato tolto dalla pagina delle disponibilità (06/11/2026, supera la decisione precedente per quella pagina).
 - Il venditore dà i dati degli altri proprietari nella scheda immobile e i loro documenti d'identità nella fase Contratto (21/10/2026).
 - Card copertura Cuneo: nessuna funzione «Avvisami quando il servizio sarà attivo». Nessun box «Ultime attività» nella spalla destra.
 - Tag «Completata / Da completare» su ogni pagina della scheda tecnica.
 - D-4 Proprietari: il codice fiscale del proprietario principale resta un campo modificabile precompilato da Cleclà (22/10, non va rimosso); l'esempio mostra almeno due proprietari in box separati («Tu», ecc.) e il bottone per aggiungere un proprietario.
+- Ad annuncio online il venditore modifica in autonomia solo il prezzo, con il suo bottone «Salva il prezzo»: aggiorna annuncio e scheda tecnica senza approvazione e avvisa il team, che aggiorna i portali esterni. Le altre modifiche passano dalla box «Vuoi cambiare altro?»: decide il team (cliente, 26/09/2026).
+- Le fasce del prezzo di pubblicazione sono tre: Consigliato, Non consigliato, Fuori mercato. «Poco consigliato» non esiste (cliente, 11/10/2026).
+- Disponibilità del venditore (D-19, M-22): settimana tipo senza date vere né navigazione per settimana; si sceglie un giorno della settimana e sotto gli orari, a selezione multipla, slot di un'ora dalle 8 alle 21. Le scelte valgono per tutte le settimane e il testo lo dice: niente «Ripeti sempre», niente avviso sull'ultimo orario, niente stato «Già prenotato» (10/11/2026, supera la decisione del 06/11). Le richieste fuori orario restano possibili. «Blocco date» è una lista di periodi senza motivo, con selettore a intervallo e «Togli», non una select (09/11/2026). La disdetta dell'incarico parte dal link «Non rinnovare l’incarico» nell'avviso di D-21 e M-24: modale di conferma, mail con data e ora, annullabile fino al termine dei 30 giorni (proposta del 09/11/2026, forma da confermare col legale). D-20, D-21 e i mobile M-23 e M-24 non hanno il blocco «Andamento» né la CTA «Prosegui». Le tavole stanno nel WIP di Sprint 3, sezione «Pubblicazione annuncio» (06/11/2026). Dettagli in `docs/claude/pubblicazione-annuncio-06-11.md`.
 - Archivio, «I tuoi documenti»: checklist con upload e download, con gli stati alternativi disegnati (documento mancante con «Carica», documento caricato con «Scarica»). «Cosa ti chiederà il notaio per il rogito» resta un elenco semplice (23/10/2026).
 
 ### Visite
 
 - Il numero di telefono del venditore non è mai nell'annuncio. Lo riceve solo l'acquirente con una visita confermata, per comunicazioni urgenti (ritardo, cambio di programma) (27/10/2026).
+- Prenota una visita ha due viste con lo stesso selettore a striscia: modale, che si apre da «Richiedi visita» nell'annuncio, e pagina (D-1), quando si parte da altri punti della piattaforma, per esempio la Bacheca. Slot di un'ora (02/11). La griglia settimanale è superata (06/11/2026). In «Proponi un nuovo orario» il giorno arriva preselezionato e bloccato (stile dei campi con lucchetto): per cambiarlo si torna al calendario (10/11/2026, supera la select dei giorni e il calendario del 09/11). Tutti i giorni del selettore sono cliccabili: un giorno senza orari mostra un avviso e «Proponi un orario»; un giorno con orari mostra disponibili, già prenotati e «Proponi un altro orario». Un giorno bloccato con «Blocco date» equivale a un giorno senza orari. La modale di proposta arriva con il giorno preselezionato e la select «Orario» mostra solo gli slot fuori dalle disponibilità e non prenotati (10/11/2026).
+- Prima di inviare la richiesta di visita l'acquirente accetta l'incarico di mediazione nel riepilogo (D-5, D-6): checkbox non spuntata e bloccante, attiva solo dopo aver letto fino in fondo la sezione dei Termini e condizioni in una modale. Anche «Proponi un nuovo orario» passa dal riepilogo (richiesta del team legale del cliente, 09/11/2026). Dettagli in `docs/claude/visite-incarico-mediazione-09-11.md`.
+- Calendario Venditore e «Le tue visite» (Acquirente) hanno la navigazione per settimana e niente tab; ai filtri si aggiunge «Passate», attivo nelle settimane in corso e future e disattivato nelle settimane passate, dove compare solo con «Annullate» (niente «Da confermare» e «Confermate») (10/11/2026, supera le tab del 06/11). D-2, D-3 e D-4 usano la card «Perché verificarsi» con i due badge. In cima al Calendario Acquirente c'è il blocco «In evidenza» (massimo due card: visita confermata di oggi o domani, poi richieste in sospeso, poi case visitate senza proposta); niente link «Vedi tutti gli immobili visitati» (09/11/2026). Su mobile le card della lista visite sono compatte: foto 88 px a sinistra con stato e data accanto; sotto, a tutta larghezza, immobile e prezzo, proprietario e azioni, messaggio solo nel dettaglio (10/11/2026). Le pagine che raccolgono più immobili (es. «Le tue visite») non hanno lo stepper del percorso: lo stepper sta solo nelle pagine di un immobile specifico (09/11/2026). Dettagli in `docs/claude/visite-consolidamento-06-11.md` (06/11/2026).
 
 ### Trattativa
 
@@ -96,11 +103,13 @@ Fonte di verità: sezione «Architettura» della board FigJam «[EXT] Cleclà | 
 - Storico proposte: dalla più recente, nessun limite, chiuso di default dietro «Vedi le proposte»; note lunghe troncate con «Leggi di più» che apre il messaggio completo sul posto.
 - Trattativa (n) è una pagina unica il cui contenuto cambia con lo stato. T4 «Accordo da confermare» compatta i punti concordati in «Argomenti concordati» più la CTA di conferma (ripete di proposito il Riepilogo).
 - 03/11/2026 (supera quanto deciso l'08/10 su T5): T5 non è più una pagina a sé. Diventa uno stato di T4: T4b «Hai confermato, in attesa dell'altra parte», T4c «Accordo confermato da entrambi», con CTA «Prepara la firma» che porta dritta alla PG3 F1. Dettagli in `docs/claude/t4-conferma-accordo-03-11.md`. Lato Acquirente T4b e T4c sono ancora da disegnare.
+- In T4 l'avviso sul blocco delle altre trattative non sta più sotto la CTA: è il secondo capoverso del popover del (?), che ora si intitola «Cosa succede confermando» (prima «Cosa riconosci confermando») (12/11/2026).
 - Nelle pagine Trattativa e Contratto non c'è il box con le due parti (nomi, ruoli, badge identità), per tenere le pagine sulla fase (01/10/2026).
 
 ### Contratto
 
 - Lo stage «Contratto» finisce con Registrazione (Preparazione alla firma + Pagamento registrazione). Da condizioni sospensive in poi, tutto quello che è in Finalizzazione (PG1–4) è lo stage «Rogito». Label dello stepper: «Rogito»; «Verso il rogito» è il titolo esteso della pagina pubblica Come funziona. Nessuno stage «Registrazione» separato (05/10/2026, supera il 29/09).
+- PG3 F2c, sezione «Firma»: niente testo sopra la CTA e niente nota FEQ sotto, resta solo la riga sull'annuncio (cliente, 12/11/2026). Dettagli in `docs/claude/pg3-firma-alleggerita-12-11.md`.
 - Stepper Contratto: lo step «Persone e documenti» usa sempre l'icona `group`. I link in spalla (Guida al contratto preliminare, Riepilogo degli accordi) compaiono solo dallo step in cui diventano disponibili e rilevanti (29/09/2026).
 - I cointestatari che firmano con venditore o acquirente non sono utenti registrati: nessuna pagina per i messaggi, solo notifiche via email (07/10/2026).
 - La persona registrata inserisce sempre i dati di tutti gli altri cointestatari; i cointestatari si accordano fuori dalla piattaforma (09/10/2026).
@@ -145,6 +154,12 @@ Profilo immobile, Pubblicazione, Archivio (Sprint 2, agosto)
 - `user-flow-profilo-immobile.md`, `wireframe-profilo-immobile.md`, `revisione-wireframe-sprint2.md`
 - `bacheca-blocchi-decisioni.md`, `listing-annuncio-decisioni.md`, `scheda-tecnica-2.0-delta.md`
 - `archivio-documentazione-decisioni.md`, `wireframe-archivio-tecnici-acquirente.md`, `trova-tecnico-decisioni.md`
+- `claude/pubblicazione-annuncio-06-11.md`
+
+Visite
+- `claude/visite-consolidamento-06-11.md`
+- `claude/visite-presentazione-06-11.md`
+- `claude/visite-incarico-mediazione-09-11.md`
 
 Trattativa
 - Base: `claude/contenuti-trattativa-export.md`, `claude/wireframe-trattativa.md`, `claude/coerenza-epica-trattativa.md`, `Come funziona la trattativa.md`
@@ -154,7 +169,7 @@ Trattativa
 
 Contratto (preparazione firma, registrazione)
 - `claude/ui-pg3-preparazione-firma.md`, `claude/ui-pg4-pagamento-registrazione.md`, `claude/ui-pg3-v2-feedback-20-09.md`, `claude/ui-pg4-v2-feedback-20-09.md`
-- `claude/ui-contratto-lettore-guida.md`, `claude/coerenza-firma-verifica-25-09.md`, `claude/caricamento-documenti-28-09.md`, `claude/stepper-contratto-29-09.md`
+- `claude/ui-contratto-lettore-guida.md`, `claude/coerenza-firma-verifica-25-09.md`, `claude/caricamento-documenti-28-09.md`, `claude/stepper-contratto-29-09.md`, `claude/pg3-firma-alleggerita-12-11.md`
 
 Feedback cliente trasversali
 - `claude/delta-feedback-cliente-20-09.md`, `claude/feedback-cliente-v2-28-09.md`, `claude/modifiche-risposte-cliente-07-10.md`
